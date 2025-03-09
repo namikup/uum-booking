@@ -15,8 +15,8 @@ export const services: Service[] = [
     id: '2',
     name: 'Go Kart Racing',
     description: 'Exciting go-kart racing track with professional karts',
-    basePrice: 35,
-    fastTrackPrice: 55,
+    basePrice: 0,
+    fastTrackPrice: 2,
     image: 'https://www.mitrajaya.com.my/images/csr/2020/gokart-2020/01.jpg',
     availableSlots: 5,
     type: 'activity'
@@ -25,21 +25,21 @@ export const services: Service[] = [
     id: '3',
     name: 'Tennis Court',
     description: 'Well-maintained tennis court with professional facilities',
-    basePrice: 30,
-    fastTrackPrice: 45,
+    basePrice: 0,
+    fastTrackPrice: 2,
     image: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8',
     availableSlots: 6,
     type: 'activity'
   },
   {
     id: '4',
-    name: 'Premium Cab Service',
-    description: 'Luxury sedan with professional driver',
-    basePrice: 20,
-    fastTrackPrice: 35,
-    image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2',
-    availableSlots: 10,
-    type: 'cab',
+    name: 'Swimming Pool',
+    description: 'Olympic-sized pool',
+    basePrice: 0,
+    fastTrackPrice: 2,
+    image: 'https://images.squarespace-cdn.com/content/v1/59e49c2ebff2000caf3f57e7/1531297818346-NBIHPJV40EKM6PKJZKGS/5.JPG?format=1000',
+    availableSlots: 8,
+    type: 'activity',
     details: {
       distance: 8.5,
       estimatedTime: '20 mins'
@@ -47,29 +47,25 @@ export const services: Service[] = [
   },
   {
     id: '5',
-    name: 'Express Cab',
+    name: 'Sapu',
     description: 'Quick and reliable transportation',
-    basePrice: 15,
-    fastTrackPrice: 25,
+    basePrice: 4,
+    fastTrackPrice: 4,
     image: 'https://img.freepik.com/free-vector/taxi-poster-with-realistic-yellow-public-service-car-with-reflection_1284-5444.jpg',
-    availableSlots: 15,
+    availableSlots: 9,
     type: 'cab',
-    details: {
-      distance: 5.2,
-      estimatedTime: '15 mins'
-    }
   },
   {
     id: '6',
-    name: 'Gourmet Pizza',
-    description: 'Artisanal pizza with premium toppings',
+    name: 'Kafeteria Proton',
+    description: '9:00AM-10:00PM',
     basePrice: 25,
     fastTrackPrice: 35,
     image: 'https://images.unsplash.com/photo-1604382355076-af4b0eb60143',
-    availableSlots: 20,
+    availableSlots: 0,
     type: 'food',
     details: {
-      cuisine: 'Italian',
+      cuisine: 'Nasi Campur',
       preparationTime: '30 mins'
     }
   },

@@ -1,4 +1,5 @@
-import  { X } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { X } from 'lucide-react';
 import { Service } from '../types';
 
 interface BookingModalProps {
@@ -9,6 +10,30 @@ interface BookingModalProps {
 }
 
 export default function BookingModal({ service, isFastTrack, onClose, onConfirm }: BookingModalProps) {
+  const [userBalance, setUserBalance] = useState(0);
+  const [hasEnoughBalance, setHasEnoughBalance] = useState(false);
+
+  useEffect(() => {
+    setUserBalance(100); // Simulate a balance top-up
+  }, []);
+
+  useEffect(() => {
+    setHasEnoughBalance(userBalance >= (isFastTrack ? service.fastTrackPrice : service.basePrice));
+  }, [userBalance, isFastTrack, service]);
+
+  const handleConfirm = () => {
+    if (hasEnoughBalance) {
+      setUserBalance(userBalance - (isFastTrack ? service.fastTrackPrice : service.basePrice));
+      onConfirm();
+    } else {
+      alert("Insufficient balance! Please top up.");
+    }
+  };
+
+  const redirectToTopUp = () => {
+    window.location.href = "/topup";
+  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-xl max-w-md w-full p-6">
@@ -27,17 +52,18 @@ export default function BookingModal({ service, isFastTrack, onClose, onConfirm 
             <p className="text-sm text-gray-600">Booking Type</p>
             <p className="font-medium">{isFastTrack ? 'Fast Track' : 'Standard'}</p>
             <p className="text-sm text-gray-600 mt-2">Total Amount</p>
-            <p className="font-medium">${isFastTrack ? service.fastTrackPrice : service.basePrice}</p>
+            <p className="font-medium">RM{isFastTrack ? service.fastTrackPrice : service.basePrice}</p>
           </div>
           <button
-            onClick={onConfirm}
-            className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            onClick={hasEnoughBalance ? handleConfirm : redirectToTopUp}
+            className={`w-full py-3 text-white rounded-lg transition-colors ${
+              hasEnoughBalance ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700'
+            }`}
           >
-            Confirm and Pay
+            {hasEnoughBalance ? 'Confirm and Pay' : 'Top Up Now'}
           </button>
         </div>
       </div>
     </div>
   );
 }
- 
